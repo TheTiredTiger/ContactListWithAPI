@@ -1,4 +1,5 @@
 import { Context } from "./Context";
+import Modal from "./Modal";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
@@ -35,7 +36,9 @@ function Contacts() {
                 </div>
                 <div className="col-3">
                     <i className="fa fa-pencil m-3" />
-                    <i className="fa fa-trash" onClick={(id) => delData(id)} />
+                    <Modal index={index}>
+                        <i className="fa fa-trash" onClick={(index) => delData(index)} />
+                    </Modal>
                 </div>
             </div>
         ) )}

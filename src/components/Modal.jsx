@@ -2,7 +2,7 @@ import { Context } from "./Context";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 
-function Modal () {
+function Modal ({index}) {
     const { delData, fetchData } = useContext(Context)
     const [visible, setVisible] = useState(false)
 
