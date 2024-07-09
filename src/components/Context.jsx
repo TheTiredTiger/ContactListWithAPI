@@ -29,36 +29,37 @@ function ContactsContext({children}) {
 
     async function addData() {
         let addCont = await axios.post(URL, {
-            method: 'POST', 
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({"name": contact.fullName, 
-                                "phone": contact.phone, 
-                                "email": contact.email,
-                                "address": contact.address})
-        })
+            "name": contact.fullName, 
+            "phone": contact.phone, 
+            "email": contact.email,
+            "address": contact.address
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
         fetchData();
-        // return{...contact, addCont}
-    }
-
+        }
+        
     async function editData(id) {
         let editCont = await axios.put(`${URL}/${id}`, {
-            method: 'PUT', 
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({"name": contact.fullName, 
-                                "phone": contact.phone, 
-                                "email": contact.email,
-                                "address": contact.address})           
-
-        })
-
-        fetchData()
-        // setContact({name: "", phone: "", email: "", address: ""});
+            "name": contact.fullName, 
+            "phone": contact.phone, 
+            "email": contact.email,
+            "address": contact.address
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        fetchData();
+        setContact({name: "", phone: "", email: "", address: ""});
     }
 
     async function delData(index) {
-        let delCont = await axios.del(`${URL}/${list[index].id}`, { 
-            method: 'DELETE'
-        });
+        let delCont = await axios.delete(`${URL}/${list[index].id}`);
         fetchData()
     } // isn't it enough to do ${id}?
 

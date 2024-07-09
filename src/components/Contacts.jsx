@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 function Contacts() {
-    const { list, contact } = useContext(Context)
+    const { list, delData } = useContext(Context)
 
 
 
@@ -34,8 +34,8 @@ function Contacts() {
                     </div>
                 </div>
                 <div className="col-3">
-                    <i className="fa fa-pencil" />
-                    <i className="fa fa-trash" />
+                    <i className="fa fa-pencil m-3" />
+                    <i className="fa fa-trash" onClick={(id) => delData(id)} />
                 </div>
             </div>
         ) )}
