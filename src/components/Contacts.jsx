@@ -1,18 +1,16 @@
 import { Context } from "./Context";
-import Modal from "./Modal";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import Modal from './Modal'
 
 function Contacts() {
-    const { list, delData } = useContext(Context)
-
-
+    const { list, delData, editData } = useContext(Context)
 
     return (
     <div className="container-fluid">
         <div>
-            {/* MODAL LINK */}
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {/* FORM LINK */}
+            <button type="button" className="btn btn-primary">
                 <Link style={{color: "white", textDecoration: "none"}} to="/form">
                     Add new contact
                 </Link>
@@ -35,10 +33,14 @@ function Contacts() {
                     </div>
                 </div>
                 <div className="col-3">
-                    <i className="fa fa-pencil m-3" />
-                    <Modal index={index}>
-                        <i className="fa fa-trash" onClick={(index) => delData(index)} />
-                    </Modal>
+                    <Link to={`/updateForm/${contact.id}`} style={{ color: "black" }}>
+                        <i className="fa fa-pencil m-3" />
+                    </Link>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => delData(index)} >
+                        {/* <Modal index={index}> */}
+                            <i className="fa fa-trash"/> 
+                        {/* </Modal> */}
+                    </button>{/* Can't remove this or move the onClick, otherwise won't work */}
                 </div>
             </div>
         ) )}

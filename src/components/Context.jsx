@@ -4,32 +4,33 @@ let URL = "https://playground.4geeks.com/contact/agendas/thetiredtiger/contacts"
 
 const Context = createContext(null)
 
-function ContactsContext({children}) {
+function ContactsContext({ children }) {
     const [ list, setList ] = useState([])
     const [contact, setContact] = useState({
-        "fullName": "", "email": "", "phone": "", "address": ""
-      }) // we can do it empty instead and put "contact" as a dependency inside the useEffect
+        "name": "", "email": "", "phone": "", "address": ""
+      })
 
-    
+    async function fetchData() {
+        try {
+            let response = await axios.get(URL)
+            let contacts = response.data.contacts
+            console.log(contacts)
+            setList(contacts)
+        } 
+        
+        catch (err) {
+            console.error(err);
+        }        
+    }
+
+
     useEffect(() => {
-        async function fetchData() {
-            try {
-                let response = await axios.get(URL)
-                let contacts = response.data.contacts
-                console.log(contacts)
-                setList(contacts)
-            } 
-            
-            catch (err) {
-                console.error(err);
-            }        
-        }
         fetchData();
-    }, [])  // we can put "contact" here if(?) it's empty
+    }, [])
 
     async function addData() {
         let addCont = await axios.post(URL, {
-            "name": contact.fullName, 
+            "name": contact.name, 
             "phone": contact.phone, 
             "email": contact.email,
             "address": contact.address
@@ -44,7 +45,7 @@ function ContactsContext({children}) {
         
     async function editData(id) {
         let editCont = await axios.put(`${URL}/${id}`, {
-            "name": contact.fullName, 
+            "name": contact.name, 
             "phone": contact.phone, 
             "email": contact.email,
             "address": contact.address
@@ -54,14 +55,24 @@ function ContactsContext({children}) {
                 }
             }
         )
+        console.log("edit clicked")
         fetchData();
         setContact({name: "", phone: "", email: "", address: ""});
     }
 
     async function delData(index) {
-        let delCont = await axios.delete(`${URL}/${list[index].id}`);
-        fetchData()
-    } // isn't it enough to do ${id}?
+        try {
+            let delCont = await axios.delete(`${URL}/${list[index].id}`);
+            console.log("delete clicked ", list[index].id)
+            let newList = list.filter((el) => {
+                el.id != list[index].id;
+            })
+            setList(newList)
+        } catch (err) {
+            console.error(err);
+        }
+        fetchData();
+    }
 
     return (
         <Context.Provider value={{ list, setList, contact, setContact, addData, editData, delData }}>
