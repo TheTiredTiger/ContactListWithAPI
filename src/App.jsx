@@ -7,12 +7,11 @@ function App() {
   
   return (
 	<BrowserRouter>
-        <div><s>send help</s></div>
-        <Routes>
-			<Route path="/" element={<Contacts/>} />
-			<Route path="/form" element={<Form/>} />
-      <Route path="/updateForm/:id" element={<UpdateForm />}></Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Contacts/>} />
+        <Route path="/form" element={<Form/>} />
+        <Route path="/updateForm/:id" element={<UpdateForm />}></Route>
+      </Routes>
     </BrowserRouter>
   )
 }

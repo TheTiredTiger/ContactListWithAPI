@@ -2,12 +2,12 @@ import { Context } from "./Context";
 import { useContext } from "react";
 
 
-function Modal ({index}) {
+function Modal ({ index }) {
     const { delData } = useContext(Context)
 
     return (
         <>
-            <button type="button" index={index}>
+            <button type="button">
                 <i className="fa fa-trash m-3"></i> 
             </button>
 

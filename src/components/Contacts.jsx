@@ -4,11 +4,11 @@ import { useContext } from "react";
 import Modal from './Modal'
 
 function Contacts() {
-    const { list, delData, editData } = useContext(Context)
+    const { list, delData } = useContext(Context)
 
     return (
     <div className="container-fluid">
-        <div>
+        <div style={{textAlign: "right", marginBottom: "2rem"}}>
             {/* FORM LINK */}
             <button type="button" className="btn btn-primary">
                 <Link style={{color: "white", textDecoration: "none"}} to="/form">
@@ -32,19 +32,22 @@ function Contacts() {
                         <p>{contact.email}</p>
                     </div>
                 </div>
-                <div className="col-3">
+                <div className="col-3" style={{textAlign: "right"}}>
                     <Link to={`/updateForm/${contact.id}`} style={{ color: "black" }}>
                         <i className="fa fa-pencil m-3" />
                     </Link>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => delData(index)} >
-                        {/* <Modal index={index}> */}
+                    <button classname="deleteButton" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                    style={{border: "none", background: "none"}}
+                    onClick={() => delData(index)} >
+                       {/*  <Modal index={index}> */}
                             <i className="fa fa-trash"/> 
                         {/* </Modal> */}
-                    </button>{/* Can't remove this or move the onClick, otherwise won't work */}
+                    </button>
                 </div>
-            </div>
+            </div>            
         ) )}
     </div>
+
     );
 }
 

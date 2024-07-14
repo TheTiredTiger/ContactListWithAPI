@@ -8,7 +8,7 @@ function ContactsContext({ children }) {
     const [ list, setList ] = useState([])
     const [contact, setContact] = useState({
         "name": "", "email": "", "phone": "", "address": ""
-      })
+    })
 
     async function fetchData() {
         try {
@@ -41,7 +41,8 @@ function ContactsContext({ children }) {
             }
         )
         fetchData();
-        }
+        setContact({name: "", phone: "", email: "", address: ""})
+    }
         
     async function editData(id) {
         let editCont = await axios.put(`${URL}/${id}`, {
@@ -57,13 +58,12 @@ function ContactsContext({ children }) {
         )
         console.log("edit clicked")
         fetchData();
-        setContact({name: "", phone: "", email: "", address: ""});
     }
 
     async function delData(index) {
         try {
             let delCont = await axios.delete(`${URL}/${list[index].id}`);
-            console.log("delete clicked ", list[index].id)
+            console.log("deleted ", list[index].id)
             let newList = list.filter((el) => {
                 el.id != list[index].id;
             })

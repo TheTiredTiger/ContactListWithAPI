@@ -8,11 +8,14 @@ function Form () {
     return ( 
         <div className="formdiv">
             <h1>Add a new contact</h1>
-            <form>
+            <div>
                 {/* NAME */}
                 <div className="mb-3">
                     <label for="exampleInputName1" className="form-label">Full name</label>
-                    <input type="text" name="name" value={contact.name} className="form-control" id="exampleInputName1"
+                    <input type="text" name="name"
+                    value={contact.name}
+                    className="form-control" id="exampleInputName1"
+                    placeholder="Full name"
                     onChange={(e) => setContact({
                         ...contact,
                         name: e.target.value
@@ -22,7 +25,10 @@ function Form () {
                 {/* EMAIL */}
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Email</label>
-                    <input type="email" name="email" value={contact.email}className="form-control" id="exampleInputEmail1"
+                    <input type="email" name="email"
+                    value={contact.email}
+                    className="form-control" id="exampleInputEmail1"
+                    placeholder="Email"
                     onChange={(e) => setContact({
                         ...contact,
                         email: e.target.value
@@ -32,7 +38,10 @@ function Form () {
                 {/* PHONE */}
                 <div className="mb-3">
                     <label for="exampleInputTel1" className="form-label">Phone</label>
-                    <input type="number" name="phone" value={contact.phone}className="form-control" id="exampleInputTel1"
+                    <input type="number" name="phone" 
+                    value={contact.phone}
+                    className="form-control" id="exampleInputTel1"
+                    placeholder="Phone"
                     onChange={(e) => setContact({
                         ...contact,
                         phone: e.target.value
@@ -44,6 +53,7 @@ function Form () {
                     <label for="exampleInputAdress1" className="form-label">Address</label>
                     <input type="text" className="form-control" 
                     name="address" value={contact.address} id="exampleInputAdress1"
+                    placeholder="Address"
                     onChange={(e) => setContact({
                         ...contact,
                         address: e.target.value
@@ -57,7 +67,7 @@ function Form () {
                 </div>
 
                 <span><Link to="/">Go back to Contacts</Link></span>
-            </form>    
+            </div>    
         </div>
      );
 }

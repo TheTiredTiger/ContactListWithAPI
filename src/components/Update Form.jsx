@@ -8,7 +8,6 @@ function UpdateForm () {
     let {id} = useParams()
 
     const updateContact = list.find((el) => {
-        console.log(el.id == id, el.id, id)
         return el.id == parseInt(id);
     })
 
@@ -17,7 +16,7 @@ function UpdateForm () {
     return ( 
         <div className="formdiv">
             <h1>Update contact</h1>
-            <form>
+            <div>
                 {/* NAME */}
                 <div className="mb-3">
                     <label for="exampleInputName1" className="form-label">Full name</label>
@@ -65,8 +64,8 @@ function UpdateForm () {
                     onClick={() => editData(updateContact.id)}>Update</button>
                 </div>
 
-                <span><Link to="/">Cancel</Link></span>
-            </form>    
+                <span><Link to="/">Go back to Contacts</Link></span>
+            </div>    
         </div>
      );
 }
