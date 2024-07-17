@@ -44,7 +44,7 @@ function ContactsContext({ children }) {
         setContact({name: "", phone: "", email: "", address: ""})
     }
         
-    async function editData(id) {
+    async function editData(id, contact) {
         let editCont = await axios.put(`${URL}/${id}`, {
             "name": contact.name, 
             "phone": contact.phone, 

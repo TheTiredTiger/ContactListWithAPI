@@ -17,22 +17,24 @@ function Contacts() {
             </button> 
         </div>
         {list.map((contact, index) => (
-            <div className="card d-flex flex-row p-3 border-1" key={contact.id} >
-                <div className="col-3">
+            <div className="card d-flex flex-row p-3 border-1 my-5" key={contact.id} >
+                <div className="col-3" style={{textAlign: "center", verticalAlign: "middle", paddingTop: "1rem"}} >
                     <img src="https://nypost.com/wp-content/uploads/sites/2/2022/06/reddit-cats-judging-looks-16.jpg" alt="judgemental cat" width="150px" height="150px" className="object-fit-cover rounded-circle"/>
                 </div>
                 <div className="col-6">
                     <div className="card-body">
-                        <h2>{contact.name}</h2>
-                        <h5>
-                            <i className="fa fa-location-arrow me-2"/>
+                        <h3>{contact.name}</h3>
+                        <p>
+                        <i class="fa-solid fa-location-dot me-2" />
                             {contact.address}
-                        </h5>
-                        <p>{contact.phone}</p>
-                        <p>{contact.email}</p>
+                        </p>
+                        <p><i class="fa-solid fa-phone me-2" />
+                        {contact.phone}</p>
+                        <p><i class="fa-solid fa-envelope me-2"/>
+                        {contact.email}</p>
                     </div>
                 </div>
-                <div className="col-3" style={{textAlign: "right"}}>
+                <div className="col-3" style={{textAlign: "right", paddingRight: "2rem", fontSize: "18px"}}>
                     <Link to={`/updateForm/${contact.id}`} style={{ color: "black" }}>
                         <i className="fa fa-pencil m-3" />
                     </Link>
